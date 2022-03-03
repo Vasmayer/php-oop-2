@@ -1,6 +1,7 @@
 <?php
 
 require_once 'CreditCard.php';
+require_once 'Product.php';
 
 class Customer
 {
@@ -9,6 +10,8 @@ class Customer
     private $credit_card;
     private $registered;
     private $payment_enabled;
+    private $cart;
+    private $discount;
 
     public function __construct($first_name,$last_name,$registered,$credit_card = false,$payment_enabled = false)
     {
@@ -17,6 +20,7 @@ class Customer
         $this->credit_card = $this->getCreditCard($credit_card);
         $this->registered = $registered;
         $this->payment_enabled = $this->isPayEnabled($this->getCreditCard($credit_card));
+        $this->discount = $this->getDiscount();
     }
 
     private function getCreditCard($card)
@@ -30,7 +34,15 @@ class Customer
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+    private function getDiscount()
+    {
+        if($this->registered)
+        {
+            return 20;
+        }
 
+        return 0;
+    }
     public function setCreditCard($card)
     {
         if(!$card instanceof CreditCard) return false;
@@ -42,8 +54,17 @@ class Customer
         if(!$card || !$card->getExpired()) return false;
 
         return true;
+    }
 
-
+    public function addProducts($product)
+    {
+        if($product instanceof Product && $this->payment_enabled)
+        {
+            $this->cart[] = $product;
+            return true;
+        }
+        
+        return false;
     }
 
 }
