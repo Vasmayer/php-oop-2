@@ -10,8 +10,8 @@ Il pagamento avviene con la carta di credito, che non deve essere scaduta. */
 require_once 'classes/Customer.php';
 require_once 'classes/CreditCard.php'; 
 
-$customer = new Customer('Marco','Leali',false);
-$credit_card = new CreditCard('1234-1234-1234-1234',$customer->getNameComplete(),'02/02/2022','000');
+$customer = new Customer('Marco','Leali',true);
+$credit_card = new CreditCard('1234-1234-1234-1234',$customer->getNameComplete(),'04/02/2022','000');
 $customer->setCreditCard($credit_card);
 var_dump($customer);
 

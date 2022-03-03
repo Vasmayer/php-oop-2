@@ -9,12 +9,12 @@ class Product
     public $rating;
 
 
-    public function __costruct($name,$price,$description,$category,$rating)
+    public function __construct($name,$price,$description,$category,$rating)
     {
-        $this->$name = $name;
-        $this->$price = $price;
-        $this->$description = $description;
-        $this->$category = $category;
-        $this->$rating = $rating;
+        $this->name = $name;
+        $this->price = $price;
+        $this->description = $description;
+        $this->category = $category;
+        $this->rating = $rating;
     }
 }
