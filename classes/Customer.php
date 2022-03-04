@@ -25,8 +25,10 @@ class Customer
 
     private function getCreditCard($card)
     {
-        if(!$card instanceof CreditCard) return false;
-
+        if(!$card instanceof CreditCard) 
+        {
+            return false;
+        }
         return $card;
     }
 
@@ -45,7 +47,11 @@ class Customer
     }
     public function setCreditCard($card)
     {
-        if(!$card instanceof CreditCard) return false;
+        if(!$card instanceof CreditCard) 
+        {
+            throw new Exception ("la carta di credito deve essere un'istanza della classe CreditCard SET");
+            return false;
+        }
         $this->credit_card = $card;
         $this->payment_enabled = !$this->credit_card->getExpired();
     }
@@ -64,6 +70,7 @@ class Customer
             return true;
         }
         
+        throw new Exception ("il prodotto deve essere un'istanza della classe Product");
         return false;
     }
 
